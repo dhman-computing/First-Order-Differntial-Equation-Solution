@@ -27,7 +27,7 @@ dx = x[1] - x[0]
 
 for i in range(steps):
     y[i+1] = y[i] - alpha(x[i], y[i]) * dx
-
+y_ = np.array([-1 * alpha(x[i], y[i]) for i in range(steps + 1)])
 
 # saving data
 
@@ -36,7 +36,7 @@ file_path = "results.csv"
 
 with open(file_path, mode='w', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(['x', 'y'])
+    writer.writerow(['x', 'y', 'dy/dx'])
 
     for j in range(steps + 1):
-        writer.writerow([x[j], y[j]])
+        writer.writerow([x[j], y[j], y_[j]])
